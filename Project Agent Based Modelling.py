@@ -278,14 +278,14 @@ class MyModel:
     def nanoparticle_brownian(self, array):
         random_movement_cartesian = ((2 * ((1.38064852e-23 * 310.15) / (
                 6 * pi * 8.9e-4 * (self.nanoparticle_radius * 1e-9)))) ** 0.5) * 1e9 * self.time_unit * array
-        '''using viscosity of water and radius of particle = 50-100 nm; using brownian equations (1) and (3) pg8 + (79) pg 28'''
+        '''using viscosity of water'''
         return random_movement_cartesian
 
     def receptor_brownian(self, array):
         """look for the end of the receptors or 100 times smaller"""
         random_movement_cartesian = ((2 * ((1.38064852e-23 * 310.15) / (
                 6 * pi * 8.9e-4 * (self.nanoparticle_radius * 1e-9 / 100)))) ** 0.5) * 1e9 * self.time_unit * array
-        '''using viscosity of water and radius of particle = 50-100 nm; using brownian equations (1) and (3) pg8 + (79) pg 28'''
+        '''using viscosity of water'''
         r = (random_movement_cartesian[0] ** 2 + random_movement_cartesian[1] ** 2 + random_movement_cartesian[
             2] ** 2) ** 0.5
         θ = atan(random_movement_cartesian[1] / random_movement_cartesian[0])
@@ -300,17 +300,8 @@ class MyModel:
             for ligand in ligands:
                 if ligand.bound is None and receptor.bound is None:  # Can only bind one receptor to one ligand at a time
                     distance = self.distance(ligand.position, receptor.position)
-                    # distance1 = self.distance(ligand.position, receptor.base_position)
-                    # inside_radius1 = (distance1 <= receptor.receptor_length)
-                    # distance2 = self.distance(ligand.ligand_base_position, receptor.position)
-                    # inside_radius2 = (distance2 <= ligand.ligand_length)
-                    # if inside_radius1 and inside_radius2:
-                    #     print(distance1)
-                    #     print(distance2)
-                    #     print('------')
                     if distance <= self.binding_distance:  # true if close position, false otherwise
                         # print(f'Collision with {ligand.agent_id} of {agent1.agent_id} and {agent2.agent_id}')
-                        # if np.random.uniform(low=0, high=1) < (self.repulsive_potential(distance, 5 * self.ligand_length) + self.steric_potential):
                         if np.random.uniform(low=0, high=1) > exp(-self.binding_energy):
                             # print(f'Reaction happened between {ligand.agent_id} of {nanoparticle.agent_id} and {receptor.agent_id}')
                             ligand.bound = receptor
