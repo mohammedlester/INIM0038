@@ -79,39 +79,6 @@ class MyModel:
             base_position = np.array([np.random.uniform(0, self.dimension), np.random.uniform(0, self.dimension), 0])  # 3D cube cartesian system - rectangular coordinates
             receptor = Receptor(receptor_id, base_position, self.receptor_length, self.dimension, self.binding_energy, self.nanoparticle_radius, self.ligand_length)
             self.agents.append(receptor)  # add agent to list of agents
-        ''''''
-        # rows = np.linspace(0, int(self.dimension), int(self.number_of_receptors*0.1), endpoint=True).tolist()
-        # x = []
-        # for i in rows:
-        #     x.append(np.full(int(self.number_of_receptors/int(len(rows))), int(i)))
-        # y = []
-        # for i in range(len(rows)):
-        #     y.append(np.linspace(0, int(self.dimension), int(self.number_of_receptors*0.01), endpoint=True))
-        # x1 = np.concatenate(x, axis=None)
-        # y1 = np.concatenate(y, axis=None)
-        # z1 = np.full(number_of_receptors, 0)
-        # bases = []
-        # for x2, y2, z2 in np.nditer([x1, y1, z1]):
-        #     bases.append(np.array([x2, y2, z2]))
-        # for i in range(number_of_receptors):  # loop from 0 to number of agents
-        #     receptor_id = f'Receptor {i}'
-        #     receptor = Receptor(receptor_id, bases.pop(), receptor_length, self.dimension, self.binding_energy,
-        #                         self.nanoparticle_radius, self.ligand_length)  # create receptor
-        #     self.agents.append(receptor)  # add agent to list of agents
-        ''''''
-        # for i in range(self.number_of_receptors):  # loop from 0 to number of agents
-        #     receptor_id = f'Receptor {i}'
-        #     '''Random rather than ordered receptors'''
-        #     while True:
-        #         base_position = np.array([np.random.uniform(0, self.dimension), np.random.uniform(0, self.dimension), 0])  # 3D cube cartesian system - rectangular coordinates
-        #         if self.is_space_available_receptor(base_position):
-        #             break
-        #         else:
-        #             continue
-        #     receptor = Receptor(receptor_id, base_position, self.receptor_length, self.dimension, self.binding_energy,
-        #                         self.nanoparticle_radius, self.ligand_length)  # create receptor
-        #     # print(f'Created {receptor_id}')
-        #     self.agents.append(receptor)  # add agent to list of agents
 
     def is_space_available_receptor(self, attempt):  # makes sure new nanoparticles don't overlap existing ones
         count = 0
@@ -360,10 +327,7 @@ class MyModel:
     def distance(a, b):
         return linalg.norm(a - b)
 
-
-
-
-
+    
 def second_variable_plot(x, y, list1, list2, errors):
     plt.xlabel(x)
     plt.ylabel(y)
@@ -401,7 +365,7 @@ def binding_energy():
         error_time = np.std(time_data, axis=0)
         data[f'{my_model.binding_energy} kt binding energy '] = np.array([list(range(0, my_model.time + 1)), mean_time, error_time])
         mean_coverage = np.mean(np.array(variable_finals))
-        print(f'The surface coverage is {mean_coverage}')
+        print(f'The mean surface coverage is {mean_coverage}')
         errors.append(np.std(np.array(variable_finals)))
         means.append(np.mean(np.array(variable_finals)))
     plt.xlabel('Time (milliseconds)')
@@ -446,7 +410,7 @@ def number_of_receptors():
         error_time = np.std(time_data, axis=0)
         data[f'{my_model.number_of_receptors} receptors'] = np.array([list(range(0, my_model.time + 1)), mean_time, error_time])
         mean_coverage = np.mean(np.array(variable_finals))
-        print(f'The surface coverage is {mean_coverage}')
+        print(f'The mean surface coverage is {mean_coverage}')
         errors.append(np.std(np.array(variable_finals)))
         means.append(np.mean(np.array(variable_finals)))
     plt.xlabel('Time (milliseconds)')
@@ -493,7 +457,7 @@ def receptor_length():
         data[f'{my_model.receptor_length} nm receptor length'] = np.array(
             [list(range(0, my_model.time + 1)), mean_time, error_time])
         mean_coverage = np.mean(np.array(variable_finals))
-        print(f'The surface coverage is {mean_coverage}')
+        print(f'The mean surface coverage is {mean_coverage}')
         errors.append(np.std(np.array(variable_finals)))
         means.append(np.mean(np.array(variable_finals)))
     plt.xlabel('Time (milliseconds)')
@@ -541,7 +505,7 @@ def number_of_nanoparticles():
         data[f'{my_model.number_of_nanoparticles} nanoparticles'] = np.array(
             [list(range(0, my_model.time + 1)), mean_time, error_time])
         mean_coverage = np.mean(np.array(variable_finals))
-        print(f'The surface coverage is {mean_coverage}')
+        print(f'The mean surface coverage is {mean_coverage}')
         errors.append(np.std(np.array(variable_finals)))
         means.append(np.mean(np.array(variable_finals)))
     plt.xlabel('Time (milliseconds)')
@@ -588,7 +552,7 @@ def nanoparticle_radius():
         data[f'{my_model.nanoparticle_radius} nm nanoparticle radius'] = np.array(
             [list(range(0, my_model.time + 1)), mean_time, error_time])
         mean_coverage = np.mean(np.array(variable_finals))
-        print(f'The surface coverage is {mean_coverage}')
+        print(f'The mean surface coverage is {mean_coverage}')
         errors.append(np.std(np.array(variable_finals)))
         means.append(np.mean(np.array(variable_finals)))
     plt.xlabel('Time (milliseconds)')
@@ -635,7 +599,7 @@ def number_of_ligands():
         data[f'{my_model.number_of_ligands} ligands'] = np.array(
             [list(range(0, my_model.time + 1)), mean_time, error_time])
         mean_coverage = np.mean(np.array(variable_finals))
-        print(f'The surface coverage is {mean_coverage}')
+        print(f'The mean surface coverage is {mean_coverage}')
         errors.append(np.std(np.array(variable_finals)))
         means.append(np.mean(np.array(variable_finals)))
     plt.xlabel('Time (milliseconds)')
@@ -682,7 +646,7 @@ def ligand_length():
         data[f'{my_model.ligand_length} nm ligand length'] = np.array(
             [list(range(0, my_model.time + 1)), mean_time, error_time])
         mean_coverage = np.mean(np.array(variable_finals))
-        print(f'The surface coverage is {mean_coverage}')
+        print(f'The mean surface coverage is {mean_coverage}')
         errors.append(np.std(np.array(variable_finals)))
         means.append(np.mean(np.array(variable_finals)))
     plt.xlabel('Time (milliseconds)')
@@ -729,7 +693,7 @@ def binding_distance():
         data[f'{my_model.binding_distance} nm binding distance'] = np.array(
             [list(range(0, my_model.time + 1)), mean_time, error_time])
         mean_coverage = np.mean(np.array(variable_finals))
-        print(f'The surface coverage is {mean_coverage}')
+        print(f'The mean surface coverage is {mean_coverage}')
         errors.append(np.std(np.array(variable_finals)))
         means.append(np.mean(np.array(variable_finals)))
     plt.xlabel('Time (milliseconds)')
