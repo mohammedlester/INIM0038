@@ -354,7 +354,7 @@ def binding_energy():
             time_data.append(np.array(my_model.coverage))
         mean_time = np.mean(time_data, axis=0)
         error_time = np.std(time_data, axis=0)
-        data[f'{my_model.binding_energy} kt binding energy '] = np.array([list(range(0, my_model.time + 1)), mean_time, error_time])
+        data[f'{my_model.binding_energy} KT binding energy '] = np.array([list(range(0, my_model.time + 1)), mean_time, error_time])
         mean_coverage = np.mean(np.array(variable_finals))
         print(f'The mean surface coverage is {mean_coverage}')
         errors.append(np.std(np.array(variable_finals)))
